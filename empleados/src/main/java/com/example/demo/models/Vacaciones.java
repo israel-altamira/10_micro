@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "vacaciones")
@@ -19,9 +21,11 @@ public class Vacaciones implements Serializable {
 	public Long empleadoId;
 
 	@Column(name = "disfrutado_inicio")
+	@Temporal(TemporalType.DATE)
 	public Date disfrutadoInicio;
 
 	@Column(name = "disfrutado_final")
+	@Temporal(TemporalType.DATE)
 	public Date disfrutadoFinal;
 
 	@Column(name = "disfrutados")

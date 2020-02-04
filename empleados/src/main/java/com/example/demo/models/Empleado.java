@@ -42,9 +42,11 @@ public class Empleado implements Serializable {
 	public double antiguedad;
 
 	@Column(name = "vigencia_inicio")
+	@Temporal(TemporalType.DATE)
 	public Date vigenciaInicio;
 
 	@Column(name = "vigencia_final")
+	@Temporal(TemporalType.DATE)
 	public Date vigenciaFinal;
 
 	public String getNombre() {
