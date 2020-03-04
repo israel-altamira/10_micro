@@ -21,7 +21,7 @@ public class EmpleadosRestServiceImpl implements EmpleadosService {
 
 	@Override
 	public List<Empleado> getVacaciones() {
-		List<Empleado> empleados = empleadosRestClient.getEmployee();
+		List<Empleado> empleados = empleadosRestClient.getEmployees();
 
 		empleados.stream().filter(empleado -> empleado.getId() != null && empleado.getId() > 0).forEach(empleado -> {
 			System.out.println(String.format("Vacaciones - buscar empleado [%d]", empleado.getId()));

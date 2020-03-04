@@ -26,15 +26,27 @@ public class EmpleadoController {
 	@Autowired
 	private EmpleadoService empleadoService;
 
-	@GetMapping(path = "/get")
-	public List<Empleado> getEmployee() {
+	@GetMapping(path = "/todos")
+	public List<Empleado> getEmployees() throws Exception {
+
+		// boolean testingHystrix = false;
+		// if(testingHystrix == false) {
+		// throw new Exception("No se pudo cargar la lista de Empleados");
+		// }
+
+		// try {
+		// Thread.sleep(2000L);
+		// } catch (InterruptedException e) {
+		// throw new Exception("Hubo un timeout de 2 segundos en Empleados App");
+		// }
+
 		return empleadoService.findAll().stream().map(empleado -> {
 			empleado.setPuerto(Integer.parseInt(env.getProperty("local.server.port")));
 			return empleado;
 		}).collect(Collectors.toList());
 	}
 
-	@GetMapping(path = "/get/{id}")
+	@GetMapping(path = "/id/{id}")
 	public Empleado getEmployeeById(@PathVariable Long id) {
 		Empleado empleado = empleadoService.findById(id);
 		empleado.setPuerto(this.port);

@@ -11,10 +11,10 @@ import com.example.demo.models.Empleado;
 @FeignClient(name = "servicio-empleados")
 public interface EmpleadosRestClient {
 
-	@GetMapping(path = "/get")
-	public List<Empleado> getEmployee();
+	@GetMapping(path = "/empleados")
+	public List<Empleado> getEmployees();
 
-	@GetMapping(path = "/get/{id}")
+	@GetMapping(path = "/empleado/{id}")
 	public Empleado getEmployeeById(@PathVariable Long id);
 
 }

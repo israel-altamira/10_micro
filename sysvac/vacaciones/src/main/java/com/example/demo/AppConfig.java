@@ -8,8 +8,8 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class AppConfig {
 
-	// @LoadBalanced es para usar ribbon con RestTemplate, no con FeignClient
 	@Bean(name = "restTemplate")
+	// @LoadBalanced es para usar ribbon con RestTemplate, no con FeignClient
 	@LoadBalanced
 	public RestTemplate registrarRestTemplate() {
 		return new RestTemplate();
