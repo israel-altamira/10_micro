@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,4 +30,23 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		return empleadoDAO.findById(id).orElse(null);
 	}
 
+	@Override
+	public Empleado create(Empleado empleado) {
+		System.out.println("Empleados - crear");
+		return empleadoDAO.save(empleado);
+	}
+
+	@Override
+	public Empleado update(Empleado empleado) {
+		System.out.println("Empleados - update");
+		Optional<Empleado> found = empleadoDAO.findById(empleado.getId());
+		return empleadoDAO.save(found.get());
+	}
+
+	@Override
+	public void delete(Long id) {
+		empleadoDAO.deleteById(id);
+	}
+
+	
 }

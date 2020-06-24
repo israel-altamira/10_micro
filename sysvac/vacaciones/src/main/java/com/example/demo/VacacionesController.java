@@ -69,7 +69,7 @@ public class VacacionesController {
 		return empleados;
 	}
 
-	@GetMapping("config")
+	@GetMapping("/config")
 	public ResponseEntity<?> obtenerConfig(@Value("${server.port}") String puerto) {
 		Map<String, String> json = new HashMap<String, String>();
 		json.put("texto", this.texto);

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +28,7 @@ public class EmpleadoController {
 	@Autowired
 	private EmpleadoService empleadoService;
 
-	@GetMapping(path = "/todos")
+	@GetMapping(path = "/listar")
 	public List<Empleado> getEmployees() throws Exception {
 
 		// boolean testingHystrix = false;
@@ -46,10 +48,23 @@ public class EmpleadoController {
 		}).collect(Collectors.toList());
 	}
 
-	@GetMapping(path = "/id/{id}")
+	@GetMapping(path = "/listar/id/{id}")
 	public Empleado getEmployeeById(@PathVariable Long id) {
 		Empleado empleado = empleadoService.findById(id);
 		empleado.setPuerto(this.port);
 		return empleado;
+	}
+
+	@PostMapping(path = "/crear")
+	public void crearEmpleado(@RequestBody Empleado empleado) {
+		empleadoService.create(empleado);
+	}
+	@PostMapping(path = "/update")
+	public void updateEmpleado(@RequestBody Empleado empleado) {
+		empleadoService.update(empleado);
+	}
+	@PostMapping(path = "/borrar")
+	public void deleteEmpleado(@RequestBody Long id) {
+		empleadoService.delete(id);
 	}
 }
